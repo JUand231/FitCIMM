@@ -44,8 +44,8 @@ public class SocioServicio {
         return dao.buscarSocio(busqueda);
     }
 
-    public Socio IngresoPorDocumento(String documento) throws SQLException {
-        return dao.IngresoPorDocumento(documento);
+    public Socio ingresoPorDocumento(String documento) throws SQLException {
+        return dao.ingresoPorDocumento(documento);
     }
 
     public List<Socio> listarProximoVencer() throws SQLException {
