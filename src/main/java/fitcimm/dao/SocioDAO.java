@@ -82,12 +82,12 @@ public class SocioDAO {
 
         try (Connection con = ConexionDB.getConexion(); PreparedStatement ps = con.prepareStatement(consulta)) {
 
-            ps.setString(2, socio.getNombres());
-            ps.setString(3, socio.getApellidos());
-            ps.setString(4, socio.getTelefono());
-            ps.setString(5, socio.getCorreo());
-            ps.setDate(6, java.sql.Date.valueOf(socio.getFechaNacimiento()));
-            ps.setInt(7, socio.getIdSocio());
+            ps.setString(1, socio.getNombres());
+            ps.setString(2, socio.getApellidos());
+            ps.setString(3, socio.getTelefono());
+            ps.setString(4, socio.getCorreo());
+            ps.setDate(5, java.sql.Date.valueOf(socio.getFechaNacimiento()));
+            ps.setInt(6, socio.getIdSocio());
 
             return ps.executeUpdate() > 0;
         }
@@ -139,7 +139,7 @@ public class SocioDAO {
         }
     }
 
-    public Socio IngresoPorDocumento(String documento) throws SQLException {
+    public Socio ingresoPorDocumento(String documento) throws SQLException {
 
         String consulta = "SELECT * FROM socio WHERE documento = ?";
 
