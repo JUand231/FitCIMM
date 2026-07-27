@@ -11,12 +11,14 @@ public class Membresia {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double valorPagado;
-    private String estado;
+
+    private Socio socio;
+    private Plan plan;
 
     public Membresia() {
     }
 
-    public Membresia(int idMembresia, int idSocio, int idPlan, String nombrePlan, LocalDate fechaInicio, LocalDate fechaFin, double valorPagado, String estado) {
+    public Membresia(int idMembresia, int idSocio, int idPlan, String nombrePlan, LocalDate fechaInicio, LocalDate fechaFin, double valorPagado, Socio socio, Plan plan) {
         this.idMembresia = idMembresia;
         this.idSocio = idSocio;
         this.idPlan = idPlan;
@@ -24,7 +26,8 @@ public class Membresia {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.valorPagado = valorPagado;
-        this.estado = estado;
+        this.socio = socio;
+        this.plan = plan;
     }
 
     public int getIdMembresia() {
@@ -83,11 +86,39 @@ public class Membresia {
         this.valorPagado = valorPagado;
     }
 
-    public String getEstado() {
-        return estado;
+    public Socio getSocio() {
+        return socio;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public EstadoMembresia getEstadoMembresia() {
+
+        if (fechaFin == null) {
+            return null;
+        }
+
+        LocalDate hoy = LocalDate.now();
+
+        if (fechaFin.isBefore(hoy)) {
+            return EstadoMembresia.VENCIDA;
+        }
+
+        if (!fechaFin.isAfter(hoy.plusDays(5))) {
+            return EstadoMembresia.POR_VENCER;
+        }
+
+        return EstadoMembresia.VIGENTE;
+    }
+
 }
