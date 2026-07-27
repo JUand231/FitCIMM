@@ -24,8 +24,10 @@
                 </a>
 
                 <div class="navbar-nav ms-auto">
+                    
+                    <a class="nav-link" href="#">Inicio</a>
 
-                    <a class="nav-link active" href="#">Socios</a>
+                    <a class="nav-link" href="#">Socios</a>
 
                     <a class="nav-link" href="#">Membresías</a>
 

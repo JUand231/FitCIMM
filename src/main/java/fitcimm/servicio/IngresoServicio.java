@@ -1,9 +1,9 @@
 package fitcimm.servicio;
 
 import fitcimm.dao.IngresoDAO;
+import fitcimm.modelo.ConsultaIngreso;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import fitcimm.modelo.Ingreso;
 import java.util.List;
 
 public class IngresoServicio {
@@ -18,7 +18,11 @@ public class IngresoServicio {
         return dao.registrarIngreso(idSocio);
     }
 
-    public List<Ingreso> consultarPorFecha(LocalDate fecha) throws SQLException {
+    public List<ConsultaIngreso> consultarPorFecha(LocalDate fecha) throws SQLException {
         return dao.consultarPorFecha(fecha);
+    }
+
+    public List<ConsultaIngreso> listarIngresos() throws SQLException {
+        return dao.listarIngresos();
     }
 }
