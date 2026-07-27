@@ -91,8 +91,4 @@ public class SocioServicio {
     public Socio ingresoPorDocumento(String documento) throws SQLException {
         return dao.ingresoPorDocumento(documento);
     }
-
-    public List<Socio> listarProximoVencer() throws SQLException {
-        return dao.listarProximoVencer();
-    }
 }

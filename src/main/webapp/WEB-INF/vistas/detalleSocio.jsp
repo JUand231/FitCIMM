@@ -41,7 +41,7 @@
                             for (Membresia m : historial) {
                     %>
                     <tr>
-                        <td><%= m.getNombrePlan()%></td>
+                        <td><%= m.getPlan().getNombre()%></td>
                         <td><%= m.getFechaInicio()%></td>
                         <td><%= m.getFechaFin()%></td>
                         <td><%= m.getValorPagado()%></td>
