@@ -22,13 +22,24 @@ public class SocioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            List<Socio> listaSocios = socioServicio.listarSocios();
+
+            String busqueda = req.getParameter("busqueda");
+
+            List<Socio> listaSocios;
+
+            if (busqueda != null && !busqueda.trim().isEmpty()) {
+                listaSocios = socioServicio.buscarSocio(busqueda);
+            } else {
+                listaSocios = socioServicio.listarSocios();
+            }
+
             req.setAttribute("listaSocios", listaSocios);
 
         } catch (SQLException e) {
-            req.setAttribute("error", "Error al cargar los socios: " + e.getMessage());
+            req.setAttribute("error", e.getMessage());
         }
 
-        req.getRequestDispatcher("/WEB-INF/vistas/SocioVista.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/vistas/SocioVista.jsp")
+                .forward(req, resp);
     }
 }
