@@ -33,7 +33,7 @@
             <div class="alert alert-danger"><%= request.getAttribute("error")%></div>
             <% }%>
 
-            <form action="${pageContext.request.contextPath}/socios/buscar" method="get" class="d-flex mb-3">
+            <form action="${pageContext.request.contextPath}/socios" method="get" class="d-flex mb-3">
                 <input type="text" name="busqueda" class="form-control me-2"
                        placeholder="Buscar por documento o apellido..."
                        value="<%= request.getParameter("busqueda") != null ? request.getParameter("busqueda") : ""%>">
