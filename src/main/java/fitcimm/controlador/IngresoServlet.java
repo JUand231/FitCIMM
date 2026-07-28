@@ -3,6 +3,7 @@ package fitcimm.controlador;
 import fitcimm.modelo.ConsultaIngreso;
 import fitcimm.modelo.Socio;
 import fitcimm.servicio.IngresoServicio;
+import fitcimm.servicio.MembresiaServicio;
 import fitcimm.servicio.SocioServicio;
 import java.io.IOException;
 import java.sql.SQLException;

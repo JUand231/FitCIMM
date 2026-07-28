@@ -8,44 +8,48 @@
     <title>Nueva Membresía</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --fitcimm-blue: #0d3b66;
+            --fitcimm-blue-dark: #092947;
+        }
+        .navbar-fitcimm {
+            background-color: var(--fitcimm-blue) !important;
+        }
+        .bg-fitcimm {
+            background-color: var(--fitcimm-blue) !important;
+        }
+        .btn-fitcimm {
+            background-color: var(--fitcimm-blue);
+            border-color: var(--fitcimm-blue);
+            color: #fff;
+        }
+        .btn-fitcimm:hover {
+            background-color: var(--fitcimm-blue-dark);
+            border-color: var(--fitcimm-blue-dark);
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <a class="navbar-brand fw-bold"
-       href="${pageContext.request.contextPath}/">
-        FITCIMM
-    </a>
-
-    <div class="navbar-nav">
-        <a class="nav-link"
-           href="${pageContext.request.contextPath}/socios">
-            Socios
-        </a>
-
-        <a class="nav-link active"
-           href="${pageContext.request.contextPath}/membresias">
-            Membresías
-        </a>
-
-        <a class="nav-link"
-           href="${pageContext.request.contextPath}/planes">
-            Planes
-        </a>
-
-        <a class="nav-link"
-           href="${pageContext.request.contextPath}/ingresos">
-            Ingresos
-        </a>
-    </div>
-</nav>
-
+<nav class="navbar navbar-expand-lg navbar-dark navbar-fitcimm px-3">
+            <a class="navbar-brand fw-bold" href="${pageContext.request.contextPath}/">FITCIMM</a>
+            <div class="navbar-nav">
+                <a class="nav-link " href="${pageContext.request.contextPath}/inicio">Inicio</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/socios">Socios</a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/membresias">Membresías</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/planes">Planes</a>
+                <a class="nav-link " href="${pageContext.request.contextPath}/ingresos">Ingresos</a>
+            </div>
+        </nav>
+            
 <div class="container mt-4">
 
     <div class="card shadow">
 
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-fitcimm text-white">
             <h4>Nueva Membresía</h4>
         </div>
 
@@ -152,7 +156,7 @@
 
                 </div>
 
-                <button class="btn btn-success">
+                <button class="btn btn-fitcimm">
                     Registrar Membresía
                 </button>
 

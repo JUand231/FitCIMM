@@ -78,4 +78,8 @@ public class MembresiaServicio {
 
     }
 
+    public boolean tieneMembresiaVigente(int idSocio) throws SQLException {
+        return dao.tieneMembresiaVigente(idSocio);
+    }
+
 }

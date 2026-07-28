@@ -186,6 +186,25 @@ public class MembresiaDAO {
             }
             return lista;
         }
+
+    }
+
+    public boolean tieneMembresiaVigente(int idSocio) throws SQLException {
+
+        String consulta
+                = "SELECT 1 "
+                + "FROM membresia "
+                + "WHERE id_socio = ? "
+                + "AND CURDATE() BETWEEN fecha_inicio AND fecha_fin";
+
+        try (Connection con = ConexionDB.getConexion(); PreparedStatement ps = con.prepareStatement(consulta)) {
+
+            ps.setInt(1, idSocio);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
     }
 
 }
