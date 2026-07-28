@@ -42,7 +42,7 @@
                 </a>
             </div>
             <p class="text-muted">
-                Socios cuya membresía vence dentro de los próximos 5 días (RF-11).
+                Socios cuya membresía vence dentro de los próximos 5 días.
                 Contáctelos para ofrecer la renovación.
             </p>
             <% if (request.getAttribute("error") != null) {%>

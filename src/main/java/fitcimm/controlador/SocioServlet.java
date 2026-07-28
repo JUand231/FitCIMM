@@ -15,18 +15,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Un unico servlet para toda la entidad Socio. Las acciones se distinguen por
- * el pathInfo (lo que viene despues de /socios), igual que en MembresiaServlet.
- * Asi evitamos tener un servlet por boton.
- *
- * Rutas que atiende: GET /socios -> listar (o buscar si viene ?busqueda=) GET
- * /socios/nuevo -> mostrar formulario de registro POST /socios/nuevo ->
- * registrar el socio GET /socios/editar?id= -> mostrar formulario con los datos
- * actuales POST /socios/editar -> guardar los cambios GET /socios/detalle?id=
- * -> ver detalle + historial de membresias POST /socios/inactivar?id= ->
- * borrado logico
- */
 @WebServlet("/socios/*")
 public class SocioServlet extends HttpServlet {
 
@@ -179,7 +167,7 @@ public class SocioServlet extends HttpServlet {
             socioServicio.inactivarSocio(idSocio);
 
         } catch (Exception e) {
-            // si falla, simplemente no inactiva
+            
         }
 
         resp.sendRedirect(req.getContextPath() + "/socios");
