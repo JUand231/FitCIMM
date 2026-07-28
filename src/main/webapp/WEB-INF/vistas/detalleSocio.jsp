@@ -6,11 +6,31 @@
         <meta charset="UTF-8">
         <title>FitCIMM - Detalle Socio</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            :root {
+                --fitcimm-blue: #0d3b66;
+                --fitcimm-blue-dark: #092947;
+            }
+            .navbar-fitcimm {
+                background-color: var(--fitcimm-blue) !important;
+            }
+            .table-fitcimm {
+                background-color: var(--fitcimm-blue) !important;
+                color: #fff;
+            }
+        </style>
     </head>
     <body class="bg-light">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-fitcimm px-3">
             <a class="navbar-brand fw-bold" href="${pageContext.request.contextPath}/">FITCIMM</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="${pageContext.request.contextPath}/inicio">Inicio</a>
+                <a class="nav-link active" href="${pageContext.request.contextPath}/socios">Socios</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/membresias">Membresías</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/planes">Planes</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/ingresos">Ingresos</a>
+            </div>
         </nav>
 
         <div class="container mt-4">
@@ -27,7 +47,7 @@
 
             <h5 class="mt-4">Historial de membresías</h5>
             <table class="table table-bordered bg-white">
-                <thead class="table-dark">
+                <thead class="table-fitcimm">
                     <tr>
                         <th>Plan</th>
                         <th>Inicio</th>
