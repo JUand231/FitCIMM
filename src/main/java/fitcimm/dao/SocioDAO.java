@@ -4,6 +4,7 @@ import fitcimm.modelo.Membresia;
 import fitcimm.modelo.Socio;
 import java.util.ArrayList;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class SocioDAO {
@@ -28,9 +29,14 @@ public class SocioDAO {
     }
 
     public List<Socio> listarSocios() throws SQLException {
+
         List<Socio> lista = new ArrayList<>();
 
-        String consulta = "Select * from socio";
+        String consulta = "SELECT s.*, mm.fecha_fin AS ultima_fecha_fin FROM socio s "
+                + "LEFT JOIN ("
+                + "    SELECT id_socio, MAX(fecha_fin) AS fecha_fin FROM membresia "
+                + "    GROUP BY id_socio"
+                + ") mm ON mm.id_socio = s.id_socio";
 
         try (Connection con = ConexionDB.getConexion(); PreparedStatement ps = con.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
 
@@ -45,6 +51,21 @@ public class SocioDAO {
                 socio.setCorreo(rs.getString("correo"));
                 socio.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
                 socio.setActivo(rs.getBoolean("activo"));
+
+                Date ultimaFechaFinSql = rs.getDate("ultima_fecha_fin");
+
+                if (ultimaFechaFinSql != null) {
+                    LocalDate fechaFin = ultimaFechaFinSql.toLocalDate();
+                    LocalDate hoy = LocalDate.now();
+
+                    if (fechaFin.isBefore(hoy)) {
+                        socio.setEstadoMembresia("VENCIDA");
+                    } else if (!fechaFin.isAfter(hoy.plusDays(5))) {
+                        socio.setEstadoMembresia("POR VENCER");
+                    } else {
+                        socio.setEstadoMembresia("VIGENTE");
+                    }
+                }
 
                 lista.add(socio);
             }
@@ -82,12 +103,12 @@ public class SocioDAO {
 
         try (Connection con = ConexionDB.getConexion(); PreparedStatement ps = con.prepareStatement(consulta)) {
 
-            ps.setString(2, socio.getNombres());
-            ps.setString(3, socio.getApellidos());
-            ps.setString(4, socio.getTelefono());
-            ps.setString(5, socio.getCorreo());
-            ps.setDate(6, java.sql.Date.valueOf(socio.getFechaNacimiento()));
-            ps.setInt(7, socio.getIdSocio());
+            ps.setString(1, socio.getNombres());
+            ps.setString(2, socio.getApellidos());
+            ps.setString(3, socio.getTelefono());
+            ps.setString(4, socio.getCorreo());
+            ps.setDate(5, java.sql.Date.valueOf(socio.getFechaNacimiento()));
+            ps.setInt(6, socio.getIdSocio());
 
             return ps.executeUpdate() > 0;
         }
@@ -139,7 +160,7 @@ public class SocioDAO {
         }
     }
 
-    public Socio IngresoPorDocumento(String documento) throws SQLException {
+    public Socio ingresoPorDocumento(String documento) throws SQLException {
 
         String consulta = "SELECT * FROM socio WHERE documento = ?";
 
@@ -165,41 +186,6 @@ public class SocioDAO {
             }
         }
         return null;
-    }
-
-    public List<Socio> listarProximoVencer() throws SQLException {
-
-        List<Socio> lista = new ArrayList<>();
-
-        String consulta = "Select * From socio s Join Membresia M on M.id_socio = s.id_socio Where M.fecha_fin Between Curdate() And Date_add(Curdate(), Interval 5 Day)";
-
-        try (Connection con = ConexionDB.getConexion(); PreparedStatement ps = con.prepareStatement(consulta); ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Socio socio = new Socio();
-                socio.setIdSocio(rs.getInt("id_socio"));
-                socio.setDocumento(rs.getString("documento"));
-                socio.setNombres(rs.getString("nombres"));
-                socio.setApellidos(rs.getString("apellidos"));
-                socio.setTelefono(rs.getString("telefono"));
-                socio.setCorreo(rs.getString("correo"));
-                socio.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                socio.setActivo(rs.getBoolean("activo"));
-
-                Membresia membresia = new Membresia();
-                membresia.setIdMembresia(rs.getInt("id_membresia"));
-                membresia.setIdSocio(rs.getInt("id_socio"));
-                membresia.setIdPlan(rs.getInt("id_plan"));
-                membresia.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
-                membresia.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
-                membresia.setValorPagado(rs.getDouble("valor_pagado"));
-
-                socio.setMembresia(membresia);
-
-                lista.add(socio);
-            }
-        }
-        return lista;
     }
 
     public boolean existeDocumento(String documento) throws SQLException {

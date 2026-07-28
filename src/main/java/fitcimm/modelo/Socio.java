@@ -13,6 +13,7 @@ public class Socio {
     private LocalDate fechaNacimiento;
     private boolean activo;
     private Membresia membresia;
+    private String estadoMembresia;
 
     public Socio() {
     }
@@ -101,5 +102,14 @@ public class Socio {
         this.membresia = membresia;
     }
 
+    public String getEstadoMembresia() {
+        return estadoMembresia;
+    }
+
+    public void setEstadoMembresia(String estadoMembresia) {
+        this.estadoMembresia = estadoMembresia;
+    }
+
     
+
 }
