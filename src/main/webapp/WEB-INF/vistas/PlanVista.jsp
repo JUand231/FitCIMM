@@ -9,66 +9,144 @@
         <title>FitCIMM - Gestión de Planes</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
         <style>
             :root {
                 --fitcimm-blue: #0d3b66;
                 --fitcimm-blue-dark: #092947;
+                --fitcimm-gold: #f4b400;
             }
 
-            .navbar-fitcimm {
-                background-color: var(--fitcimm-blue) !important;
+            body{
+                background:#f5f7fb;
             }
 
-            .btn-fitcimm {
-                background-color: var(--fitcimm-blue);
-                border-color: var(--fitcimm-blue);
-                color: #fff;
+            .navbar-fitcimm{
+                background: linear-gradient(135deg,#0d3b66,#155a96);
+                margin:15px;
+                border-radius:18px;
+                padding:12px 22px;
+                box-shadow:0 10px 25px rgba(0,0,0,.18);
             }
 
-            .btn-fitcimm:hover {
-                background-color: var(--fitcimm-blue-dark);
-                border-color: var(--fitcimm-blue-dark);
-                color: #fff;
+            .logo-fitcimm{
+                width:48px;
+                height:48px;
+                border-radius:12px;
+                background:white;
+                color:#0d3b66;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:24px;
+                margin-right:12px;
             }
 
-            .table-fitcimm {
-                background-color: var(--fitcimm-blue) !important;
-                color: #fff;
+            .brand-title{
+                line-height:1;
+            }
+
+            .brand-title span{
+                display:block;
+                font-size:.78rem;
+                color:#dbe9ff;
+                font-weight:400;
+            }
+
+            .navbar-nav .nav-link{
+                color:white !important;
+                font-weight:500;
+                margin-left:8px;
+                padding:10px 18px !important;
+                border-radius:12px;
+                transition:.3s;
+            }
+
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active{
+                background:rgba(255,255,255,.15);
+                transform:translateY(-2px);
+            }
+
+            .bg-fitcimm{
+                background:linear-gradient(135deg,#0d3b66,#155a96);
+            }
+
+            .btn-fitcimm{
+                background:#0d3b66;
+                border:none;
+                color:#fff;
+            }
+
+            .btn-fitcimm:hover{
+                background:#092947;
             }
         </style>
-
     </head>
-
     <body class="bg-light">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-fitcimm">
 
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-fitcimm px-3">
+            <div class="container-fluid">
 
-            <a class="navbar-brand fw-bold" href="${pageContext.request.contextPath}/">
-                FITCIMM
-            </a>
+                <a class="navbar-brand d-flex align-items-center" href="${pageContext.request.contextPath}/inicio">
 
-            <div class="navbar-nav">
+                    <div class="logo-fitcimm">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
 
-                <a class="nav-link" href="${pageContext.request.contextPath}/inicio">
-                    Inicio
+                    <div class="brand-title fw-bold fs-4">
+                        FITCIMM
+                        <span>Sistema de Gestión</span>
+                    </div>
+
                 </a>
 
-                <a class="nav-link" href="${pageContext.request.contextPath}/socios">
-                    Socios
-                </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menuFitcimm">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <a class="nav-link" href="${pageContext.request.contextPath}/membresias">
-                    Membresías
-                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="menuFitcimm">
 
-                <a class="nav-link active" href="${pageContext.request.contextPath}/planes">
-                    Planes
-                </a>
+                    <div class="navbar-nav">
 
-                <a class="nav-link" href="${pageContext.request.contextPath}/ingresos">
-                    Ingresos
-                </a>
+                        <a class="nav-link "
+                           href="${pageContext.request.contextPath}/inicio">
+                            <i class="bi bi-house-door-fill"></i>
+                            Inicio
+                        </a>
+
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/socios">
+                            <i class="bi bi-people-fill"></i>
+                            Socios
+                        </a>
+
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/membresias">
+                            <i class="bi bi-card-checklist"></i>
+                            Membresías
+                        </a>
+
+                        <a class="nav-link active"
+                           href="${pageContext.request.contextPath}/planes">
+                            <i class="bi bi-clipboard2-pulse-fill"></i>
+                            Planes
+                        </a>
+
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/ingresos">
+                            <i class="bi bi-door-open-fill"></i>
+                            Ingresos
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
